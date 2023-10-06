@@ -6,9 +6,6 @@
 using namespace std;
 
 void menu();
-void list();
-void deck();
-void stack();
 void men();
 void disp();
 void cls();
@@ -29,8 +26,9 @@ void menu()
 {
 	int choice = 0;
 	int k = 0;
-
+	Keeper a(5);
 	men();
+	a.Show();
 	while (choice != 6)
 	{
 		cin >> choice;
@@ -155,6 +153,10 @@ void menu()
 				men();
 				exp();
 				break;
+			case 6:
+				cls();
+				men();
+				break;
 			default:
 				cls();
 				men();
@@ -162,18 +164,6 @@ void menu()
 				break;
 		}
 	}
-}
-
-void list()
-{
-}
-
-void deck()
-{
-}
-
-void stack()
-{
 }
 
 void men()
