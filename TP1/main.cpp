@@ -26,9 +26,10 @@ void menu()
 {
 	int choice = 0;
 	int k = 0;
-	Keeper a(5);
+	Keeper a(3);
 	men();
 	a.Show();
+	cout << a.GetSize()<<endl;
 	while (choice != 6)
 	{
 		cin >> choice;
@@ -38,8 +39,9 @@ void menu()
 			case 1: //////////////////////////////Open list menu
 			{
 				k = 0;
-				disp();
-				cout << "List\n";
+				disp();/*
+				cout << "List\n";*/
+				a.Show();
 				while (k != 3)
 				{
 					cin >> k;
@@ -48,14 +50,18 @@ void menu()
 						case 1:////Add element
 							cls();
 							disp();
-							cout << "List\n";
-							elad();
+							a.push_front(rand() % 10);
+							a.Show();
+							/*cout << "List\n";
+							elad();*/
 							break;
 						case 2://///Remove element
 							cls();
 							disp();
-							cout << "List\n";
-							elre();
+							a.pop_back();
+							a.Show();
+							/*cout << "List\n";
+							elre();*/
 							break;
 						case 3:///To main menu
 							cls();

@@ -5,12 +5,14 @@ Keeper::Keeper()
 {
 	Size = 0;
 	head = nullptr;
+	tail = nullptr;
 }
 
 Keeper::Keeper(int siz)
 {
 	Size = 0;
 	head = nullptr;
+	tail = nullptr;
 	Spawn(siz);
 }
 
@@ -101,6 +103,16 @@ void Keeper::pop_front()
 	Size--;
 }
 
+void Keeper::pop_back()
+{
+	Node* temp = tail;
+	tail = tail->pPrev;
+	tail->pNext = nullptr;
+	delete temp;
+
+	Size--;
+}
+
 void Keeper::push_back(int data)
 {
 	if (head == nullptr)
@@ -122,6 +134,23 @@ void Keeper::push_back(int data)
 	Size++;
 }
 
+void Keeper::push_front(int data)
+{
+	if (head == nullptr)
+	{
+		head = new Node(data);
+		tail = this->head;
+	}
+	else
+	{
+		Node* current = this->head;
+
+		current->pPrev = new Node(data, current, current->pPrev);
+		head = current->pPrev;
+	}
+	Size++;
+}
+
 void Keeper::clear()
 {
 	while (Size)
@@ -134,14 +163,7 @@ void Keeper::operator<(int val)
 {
 	for (int cnt = 0; cnt < this->Size; cnt++)
 	{
-		if (comp(cnt, val))
-		{
-			cout << "1 ";
-		}
-		else
-		{
-			cout << "0 ";
-		}
+		
 	}
 	cout << endl;
 }
@@ -150,14 +172,7 @@ void Keeper::operator>(int val)
 {
 	for (int cnt = 0; cnt < this->Size; cnt++)
 	{
-		if ((comp1(cnt, val)))
-		{
-			cout << "1 ";
-		}
-		else
-		{
-			cout << "0 ";
-		}
+		
 	}
 	cout << endl;
 }
@@ -200,39 +215,6 @@ void Keeper::operator()(int val1, int val2)
 	part_show(val1, val2);
 }
 
-bool Keeper::comp(int cnt, int val)
-{
-	Node* current = this->head;
-
-	for (int cnt1 = 0; cnt1 != cnt; cnt1++)
-	{
-		current = current->pNext;
-	}
-	if (current->data < val)
-	{
-		return true;
-	}
-
-	return false;
-}
-
-bool Keeper::comp1(int cnt, int val)
-{
-	Node* current = this->head;
-
-	for (int cnt1 = 0; cnt1 != cnt; cnt1++)
-	{
-		current = current->pNext;
-	}
-	if (current->data > val)
-	{
-		return true;
-	}
-
-	return false;
-}
-
-
 
 int Keeper::GetSize()
 {
@@ -242,7 +224,7 @@ int Keeper::GetSize()
 int Keeper::request_strt()
 {
 	int strt;
-	cout << "Input the list length: ";
+	cout << "Input length: ";
 	cin >> strt;
 	return strt;
 }
@@ -302,70 +284,4 @@ Node::Node(int data, Node* pNext, Node* pPrev)
 	this->data = data;
 	this->pNext = pNext;
 	this->pPrev = pPrev;
-}
-
-void operator!=(const Keeper& lis, int val)
-{
-	bool comp2 = false;
-
-	for (int cnt = 0; cnt < lis.Size; cnt++)
-	{
-		Node* current = lis.head;
-
-		for (int cnt1 = 0; cnt1 != cnt; cnt1++)
-		{
-			current = current->pNext;
-		}
-		if (current->data != val)
-		{
-			comp2 = true;
-		}
-		else
-		{
-			comp2 = false;
-		}
-
-		if (comp2)
-		{
-			cout << "1 ";
-		}
-		else
-		{
-			cout << "0 ";
-		}
-	}
-	cout << endl;
-}
-
-void operator==(const Keeper& lis, int val)
-{
-	bool comp2 = false;
-
-	for (int cnt = 0; cnt < lis.Size; cnt++)
-	{
-		Node* current = lis.head;
-
-		for (int cnt1 = 0; cnt1 != cnt; cnt1++)
-		{
-			current = current->pNext;
-		}
-		if (current->data == val)
-		{
-			comp2 = true;
-		}
-		else
-		{
-			comp2 = false;
-		}
-
-		if (comp2)
-		{
-			cout << "1 ";
-		}
-		else
-		{
-			cout << "0 ";
-		}
-	}
-	cout << endl;
 }
