@@ -1,5 +1,6 @@
 #include "Keeper.h"
-#include "Queue.h"
+#include "Que.h"
+
 
 #include <list>
 #include <iostream>
@@ -27,10 +28,10 @@ void menu()
 {
 	int choice = 0;
 	int k = 0;
-	Keeper a(3);
 	men();
-	a.Show();
-	cout << a.GetSize()<<endl;
+	Que abc;
+	Keeper a(3);
+	abc.show();
 	while (choice != 6)
 	{
 		cin >> choice;
@@ -40,9 +41,8 @@ void menu()
 			case 1: //////////////////////////////Open list menu
 			{
 				k = 0;
-				disp();/*
-				cout << "List\n";*/
-				a.Show();
+				disp();
+				abc.showL();
 				while (k != 3)
 				{
 					cin >> k;
@@ -51,27 +51,30 @@ void menu()
 						case 1:////Add element
 							cls();
 							disp();
-							a.push_front(rand() % 10);
-							a.Show();
-							/*cout << "List\n";
-							elad();*/
+							cls();
+							abc.pushL(); 
+							cls();
+							disp();
+							abc.showL();
 							break;
 						case 2://///Remove element
 							cls();
 							disp();
-							a.pop_back();
-							a.Show();
-							/*cout << "List\n";
-							elre();*/
+							cls();
+							abc.popL();
+							cls();
+							disp();
+							abc.showL();
 							break;
 						case 3:///To main menu
 							cls();
 							men();
+							abc.show();
 							break;
 						default:
 							cls();
-							disp();
-							cout << "List\n";
+							disp(); 
+							abc.showL();
 							inc();
 							break;
 					}
@@ -82,7 +85,7 @@ void menu()
 			{
 				k = 0;
 				disp();
-				cout << "Deck\n";
+				abc.showD();
 				while (k != 3)
 				{
 					cin >> k;
@@ -91,23 +94,30 @@ void menu()
 						case 1:////Add element
 							cls();
 							disp();
-							cout << "Deck\n";
-							elad();
+							cls();
+							abc.pushD();
+							cls();
+							disp();
+							abc.showD();
 							break;
 						case 2://///Remove element
 							cls();
 							disp();
-							cout << "Deck\n";
-							elre();
+							cls();
+							abc.popD();
+							cls();
+							disp();
+							abc.showD();
 							break;
 						case 3:///To main menu
 							cls();
 							men();
+							abc.show();
 							break;
 						default:
 							cls();
 							disp();
-							cout << "Deck\n";
+							abc.showD();
 							inc();
 							break;
 					}
@@ -118,57 +128,76 @@ void menu()
 			{
 				k = 0;
 				disp();
-				cout << "Stack\n";
+				abc.showS();
 				while (k != 3)
 				{
 					cin >> k;
 					switch (k)
 					{
-					case 1:////Add element
-						cls();
-						disp();
-						cout << "Stack\n";
-						elad();
-						break;
-					case 2://///Remove element
-						cls();
-						disp();
-						cout << "Stack\n";
-						elre();
-						break;
-					case 3:///To main menu
-						cls();
-						men();
-						break;
-					default:
-						cls();
-						disp();
-						cout << "Stack\n";
-						inc();
-						break;
+						case 1:////Add element
+							cls();
+							disp();
+							cls();
+							abc.pushS();
+							cls();
+							disp();
+							abc.showS();
+							break;
+						case 2://///Remove element
+							cls();
+							disp();
+							cls();
+							abc.popS();
+							cls();
+							disp();
+							abc.showS();
+							break;
+						case 3:///To main menu
+							cls();
+							men();
+							abc.show();
+							break;
+						default:
+							cls();
+							disp();
+							abc.showS();
+							inc();
+							break;
 					}
 				}
 				break;
 			}
 			case 4:
+			{
 				cls();
 				men();
+				abc.imp();
+				abc.show();
 				imp();
 				break;
+			}
 			case 5:
+			{
 				cls();
 				men();
+				abc.show();
+				abc.exp();
 				exp();
 				break;
+			}
 			case 6:
+			{
 				cls();
-				men();
 				break;
+			}
 			default:
+			{
 				cls();
 				men();
+				abc.show();
 				inc();
 				break;
+			}
 		}
 	}
 }

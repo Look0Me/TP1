@@ -55,62 +55,68 @@ Keeper::Keeper(const Keeper& other)
 	}
 }
 
-void Keeper::part_show(int a, int b)
-{
-	Node* current = this->head;
-	int tems = this->Size;
-	if ((a < 0) || (b > Size) || (a > b))
-	{
-		cout << "Wrong" << endl;
-	}
-	else
-	{
-		for (int i = 0; i < Size; i++)
-		{
-			current = current->pNext;
-			if (i < a)
-			{
-				pop_front();
-				Size++;
-			}
-			else if (i == b - 1)
-			{
-				this->tail = current;
-			}
-			else if (i == Size - 1)
-			{
-				delete current;
-			}
-			else if ((i > b))
-			{
-				delete current->pPrev;
-			}
-
-		}
-		tail->pNext = nullptr;
-	}
-	Show();
-	this->Size = b - a + 1;
-}
-
 void Keeper::pop_front()
 {
-	Node* temp = head;
-	head = head->pNext;
-
-	delete temp;
-
-	Size--;
+	int si = this->Size;
+	if (si)
+	{
+		Node* temp = head;
+		head = head->pNext;
+		delete temp;
+		Size--;
+	}
 }
 
 void Keeper::pop_back()
 {
-	Node* temp = tail;
-	tail = tail->pPrev;
-	tail->pNext = nullptr;
-	delete temp;
+	int si = this->Size;
+	if (si)
+	{
+		Node* temp = tail;
+		tail = tail->pPrev;
+		if (si > 1)
+		{
+			tail->pNext = nullptr;
+			delete temp;
+			Size--;
+		}
+		else
+		{
+			this->head = nullptr;
+			this->Size = 0;
+		}
+	}
+}
 
-	Size--;
+void Keeper::pop(int d)
+{
+	int si = this->Size;
+	int i = 0;
+	if (si)
+	{
+		if (d<0 || d>si - 1)
+			cout << "Incorrect range!" << endl;
+		else if (d == 0)
+			this->pop_front();
+		else if (d == si - 1)
+			this->pop_back();
+		else
+		{
+			Node* temp = this->head;
+			Node* tem1 = nullptr;
+			while (i != d)
+			{
+				tem1 = temp;
+				temp = temp->pNext;
+				temp->pPrev=tem1;
+				i++;
+			}
+			temp->pPrev->pNext = temp->pNext;
+			temp->pNext->pPrev = temp->pPrev;
+			delete temp;
+			Size--;
+		}
+	}
 }
 
 void Keeper::push_back(int data)
@@ -151,68 +157,38 @@ void Keeper::push_front(int data)
 	Size++;
 }
 
+void Keeper::push(int i, int d)
+{
+	int si = this->Size;
+	int cnt = 0;
+	if (i<0 || i> si)
+		cout << "Incorrect range!" << endl;
+	else if (i == 0)
+		this->push_front(d);
+	else if (i == si)
+		this->push_back(d);
+	else
+	{
+		
+		Node* current = this->head;
+		while (cnt != i-1)
+		{
+			current = current->pNext;
+			cnt++;
+		}
+		Node* current1 = current->pNext;
+		current->pNext = new Node(d, current->pNext, current);
+		Size++;
+	}
+	
+}
+
 void Keeper::clear()
 {
 	while (Size)
 	{
 		pop_front();
 	}
-}
-
-void Keeper::operator<(int val)
-{
-	for (int cnt = 0; cnt < this->Size; cnt++)
-	{
-		
-	}
-	cout << endl;
-}
-
-void Keeper::operator>(int val)
-{
-	for (int cnt = 0; cnt < this->Size; cnt++)
-	{
-		
-	}
-	cout << endl;
-}
-
-void Keeper::operator=(const Keeper& other)
-{
-	int cnt = 0;
-	this->Size = other.Size;
-
-	Node* current = nullptr;
-	Node* current1 = nullptr;
-	this->head = current;
-
-
-	for (cnt = 0; cnt < this->Size; cnt++)
-	{
-		if (head == nullptr)
-		{
-			this->head = new Node(other.head->data);
-			this->tail = this->head;
-		}
-		else
-		{
-			current = other.head;
-			current1 = this->head;
-
-			while (current1->pNext != nullptr)
-			{
-				current = current->pNext;
-				current1 = current1->pNext;
-			}
-			current1->pNext = new Node(current->pNext->data, current1->pNext, current1);
-			this->tail = current1->pNext;
-		}
-	}
-}
-
-void Keeper::operator()(int val1, int val2)
-{
-	part_show(val1, val2);
 }
 
 
@@ -224,7 +200,7 @@ int Keeper::GetSize()
 int Keeper::request_strt()
 {
 	int strt;
-	cout << "Input length: ";
+	cout << "Input container length: ";
 	cin >> strt;
 	return strt;
 }
@@ -263,6 +239,15 @@ int& Keeper::operator[](const int index)
 
 }
 
+//void Keeper::operator()(Node* smallhead, int slot)
+//{
+//	int i = 0;
+//	Node* current = this->head;
+//	while (i != slot)
+//		current->pNext;
+//	current->Link = smallhead;
+//}
+
 void Keeper::Show()
 {
 	Node* current = this->head;
@@ -279,9 +264,15 @@ void Keeper::Show()
 		cout << "The list is empty!!!" << endl;
 }
 
-Node::Node(int data, Node* pNext, Node* pPrev)
+//Node* Keeper::gethead()
+//{
+//	return this->head;
+//}
+
+Node::Node(int data, Node* pNext, Node* pPrev, Node* Link)
 {
 	this->data = data;
 	this->pNext = pNext;
 	this->pPrev = pPrev;
+	this->Link = Link;
 }
