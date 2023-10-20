@@ -58,10 +58,10 @@ Keeper::Keeper(const Keeper& other)
 void Keeper::pop_front()
 {
 	int si = this->Size;
-	if (si)
+	if (si)//Фикс исключения 1
 	{
 		Node* temp = head;
-		head = head->pNext;
+		head = head->pNext;//Исключение 1: попытка чтения поля пустого элемента
 		delete temp;
 		Size--;
 	}
@@ -70,10 +70,10 @@ void Keeper::pop_front()
 void Keeper::pop_back()
 {
 	int si = this->Size;
-	if (si)
+	if (si)//Фикс исключения 2
 	{
 		Node* temp = tail;
-		tail = tail->pPrev;
+		tail = tail->pPrev;//Исключение 2: попытка чтения поля пустого элемента
 		if (si > 1)
 		{
 			tail->pNext = nullptr;
@@ -92,31 +92,31 @@ void Keeper::pop(int d)
 {
 	int si = this->Size;
 	int i = 0;
-	if (si)
+	//if (si)
+	
+	if (d<0 || d>si - 1)
+		cout << "Incorrect range!" << endl;
+	else if (d == 0)
+		this->pop_front();
+	else if (d == si - 1)
+		this->pop_back();
+	else
 	{
-		if (d<0 || d>si - 1)
-			cout << "Incorrect range!" << endl;
-		else if (d == 0)
-			this->pop_front();
-		else if (d == si - 1)
-			this->pop_back();
-		else
+		Node* temp = this->head;
+		Node* tem1 = nullptr;
+		while (i != d)
 		{
-			Node* temp = this->head;
-			Node* tem1 = nullptr;
-			while (i != d)
-			{
-				tem1 = temp;
-				temp = temp->pNext;
-				temp->pPrev=tem1;
-				i++;
-			}
-			temp->pPrev->pNext = temp->pNext;
-			temp->pNext->pPrev = temp->pPrev;
-			delete temp;
-			Size--;
+			tem1 = temp;
+			temp = temp->pNext;
+			temp->pPrev=tem1;
+			i++;
 		}
+		temp->pPrev->pNext = temp->pNext;
+		temp->pNext->pPrev = temp->pPrev;
+		delete temp;
+		Size--;
 	}
+	
 }
 
 void Keeper::push_back(int data)

@@ -7,19 +7,21 @@ Queue::Queue()
 
 Queue::~Queue()
 {
+	queer.~Keeper();
 }
 
-void Queue::pop()
-{
-	cout << "Element popped!" << endl;
-}
+//void Queue::pop()
+//{
+//	queer.pop_front();
+//}
 
-void Queue::push()
-{
-	cout << "Element pushed!" << endl;
-}
+//void Queue::push()
+//{
+//	queer.push_front();
+//}
 
-int Queue::getsize()
-{
-	return this->size;
-}
+//int Queue::getsize()
+//{
+//	size= queer.GetSize();
+//	return size;
+//}

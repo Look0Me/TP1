@@ -1,4 +1,3 @@
-#include "Keeper.h"
 #include "Que.h"
 
 
@@ -8,11 +7,9 @@
 using namespace std;
 
 void menu();
+void cls();
 void men();
 void disp();
-void cls();
-void elad();
-void elre();
 void inc();
 void imp();
 void exp();
@@ -30,7 +27,6 @@ void menu()
 	int k = 0;
 	men();
 	Que abc;
-	Keeper a(3);
 	abc.show();
 	while (choice != 6)
 	{
