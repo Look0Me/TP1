@@ -1,5 +1,7 @@
 #include "Keeper.h"
 #include<iostream>
+#include <conio.h>
+#include <windows.h>
 
 Keeper::Keeper()
 {
@@ -65,6 +67,11 @@ void Keeper::pop_front()
 		delete temp;
 		Size--;
 	}
+	else
+	{
+		cout << "Bad Input: cannot delete an element of an empty container" << endl;
+		Sleep(1000);
+	}
 }
 
 void Keeper::pop_back()
@@ -86,6 +93,11 @@ void Keeper::pop_back()
 			this->Size = 0;
 		}
 	}
+	else
+	{
+		cout << "Bad Input: cannot delete an element of an empty container" << endl;
+		Sleep(1000);
+	}
 }
 
 void Keeper::pop(int d)
@@ -95,7 +107,10 @@ void Keeper::pop(int d)
 	//if (si)
 	
 	if (d<0 || d>si - 1)
+	{
 		cout << "Incorrect range!" << endl;
+		Sleep(1000);
+	}	
 	else if (d == 0)
 		this->pop_front();
 	else if (d == si - 1)
@@ -162,7 +177,10 @@ void Keeper::push(int i, int d)
 	int si = this->Size;
 	int cnt = 0;
 	if (i<0 || i> si)
+	{
 		cout << "Incorrect range!" << endl;
+		Sleep(1000);
+	}
 	else if (i == 0)
 		this->push_front(d);
 	else if (i == si)

@@ -1,6 +1,5 @@
 #include "Que.h"
 
-
 #include <list>
 #include <iostream>
 #define cles 1
@@ -47,8 +46,7 @@ void menu()
 						case 1:////Add element
 							cls();
 							disp();
-							cls();
-							abc.pushL(); 
+							abc.pushL();
 							cls();
 							disp();
 							abc.showL();
@@ -56,7 +54,6 @@ void menu()
 						case 2://///Remove element
 							cls();
 							disp();
-							cls();
 							abc.popL();
 							cls();
 							disp();
@@ -120,7 +117,7 @@ void menu()
 				}
 				break;
 			}
-			case 3:
+			case 3://////////////////////////////Open steck menu
 			{
 				k = 0;
 				disp();
@@ -133,7 +130,6 @@ void menu()
 						case 1:////Add element
 							cls();
 							disp();
-							cls();
 							abc.pushS();
 							cls();
 							disp();
@@ -142,7 +138,6 @@ void menu()
 						case 2://///Remove element
 							cls();
 							disp();
-							cls();
 							abc.popS();
 							cls();
 							disp();
