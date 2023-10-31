@@ -5,8 +5,10 @@ class List: public Queue
 {
 	public:
 		List();
+		List(int num);
 		~List(); 
 		void pop();
+		void spawn(int num);
 		void push(int d);
 		int getsize();
 		void show();

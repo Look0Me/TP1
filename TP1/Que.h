@@ -8,6 +8,8 @@ class Que: public Queue
 {
 public:
 	Que();
+	Que(int num);
+	Que(const Que& other);
 	~Que();
 	void pop();
 	void popL();
@@ -30,6 +32,8 @@ public:
 	void imp();
 	void refresh();
 
+	void spawn(int num);
+
 	bool isNumeric(string const& str);
 	/*Node& getheadl();
 	Node& getheadd();
@@ -37,6 +41,9 @@ public:
 
 private:
 	int size;
+	int lsiz;
+	int dsiz;
+	int ssiz;
 	Keeper Qu;
 	List lis;
 	Deck dec;

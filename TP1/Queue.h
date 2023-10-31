@@ -7,8 +7,10 @@ class Queue
 {
 	public:
 		Queue();
-		~Queue();
+		//virtual int& operator[](const int index) = 0;
+		virtual ~Queue();
 		virtual void pop()=0;
+		virtual void spawn(int num) = 0;
 		//virtual void push();
 		virtual int getsize() = 0;
 

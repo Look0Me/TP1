@@ -11,6 +11,7 @@ class Stack : public Queue
 		int getsize();
 		void show();
 		void exp();
+		void spawn(int num);
 	private:
 		Keeper klis;
 		int size;

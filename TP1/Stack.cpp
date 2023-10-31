@@ -3,13 +3,13 @@
 Stack::Stack()
 {
 	this->size = 0;
-	klis.Spawn(3);
+	
 }
 
 Stack::~Stack()
 {
 	klis.clear();
-	cout << "Stack cleared" << endl;
+	cout << "Stack cleared: " << this << endl;
 }
 
 void Stack::pop()
@@ -42,3 +42,10 @@ void Stack::exp()
 		fout << klis[i] << endl;
 	fout.close();
 }
+
+void Stack::spawn(int num)
+{
+	this->klis.Spawn(num);
+}
+
+

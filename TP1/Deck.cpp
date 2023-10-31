@@ -3,13 +3,13 @@
 Deck::Deck()
 {
 	this->size = 0;
-	klis.Spawn(3);
+	
 }
 
 Deck::~Deck()
 {
 	klis.clear();
-	cout << "Deck cleared" << endl;
+	cout << "Deck cleared: " << this << endl;
 }
 
 void Deck::pop()
@@ -67,4 +67,9 @@ void Deck::exp()
 	for (int i = 0; i < si; i++)
 		fout << klis[i] << endl;
 	fout.close();
+}
+
+void Deck::spawn(int num)
+{
+	this->klis.Spawn(num);
 }

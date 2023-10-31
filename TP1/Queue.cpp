@@ -7,7 +7,7 @@ Queue::Queue()
 
 Queue::~Queue()
 {
-	queer.~Keeper();
+	cout << "Base cleared: " << this<< endl;
 }
 
 //void Queue::pop()

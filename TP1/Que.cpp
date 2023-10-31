@@ -3,13 +3,41 @@
 Que::Que()
 {
 	this->size = 0;
+	this->lsiz = 0;
+	this->dsiz = 0;
+	this->ssiz = 0;
 	Qu.Spawn(3);
 	this->getsize();
 }
 
+Que::Que(int num)
+{
+	this->size = 0;
+	this->lsiz = 0;
+	this->dsiz = 0;
+	this->ssiz = 0;
+	Qu.Spawn(3);
+	this->spawn(num);
+	this->getsize();
+}
+
+Que::Que(const Que& other)
+{
+	this->Qu.Spawn(3);
+	this->getsize();
+	this->size = 0;
+	this->lsiz = other.lsiz;
+	this->dsiz = other.dsiz;
+	this->ssiz = other.ssiz;
+
+	this->lis.spawn(this->lsiz);
+	this->dec.spawn(this->dsiz);
+	this->ste.spawn(this->ssiz);
+}
+
 Que::~Que()
 {
-	cout << "Queue cleared" << endl;
+	cout << "Queue cleared: " << this << endl;
 }
 
 void Que::pop()
@@ -56,6 +84,9 @@ void Que::pushS(int d)
 int Que::getsize()
 {
 	this->size = this->Qu.GetSize();
+	this->lsiz = this->lis.getsize();
+	this->dsiz = this->dec.getsize();
+	this->ssiz = this->ste.getsize();
 	return size;
 }
 
@@ -134,6 +165,17 @@ void Que::refresh()
 	this->Qu[0] = lis.getsize();
 	this->Qu[1] = dec.getsize();
 	this->Qu[2] = ste.getsize();
+
+	this->lsiz = lis.getsize();
+	this->dsiz = dec.getsize();
+	this->ssiz = ste.getsize();
+}
+
+void Que::spawn(int num)
+{
+	this->lis.spawn(num);
+	this->dec.spawn(num);
+	this->ste.spawn(num);
 }
 
 bool Que::isNumeric(string const& str)

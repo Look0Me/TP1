@@ -3,13 +3,18 @@
 List::List()
 {
 	this->size = 0;
-	klis.Spawn(3);
+}
+
+List::List(int num)
+{
+	this->size = 0;
+	klis.Spawn(num);
 }
 
 List::~List()
 {
 	klis.clear();
-	cout << "List cleared" << endl;
+	cout << "List cleared: " << this << endl;
 }
 
 void List::pop()
@@ -19,6 +24,11 @@ void List::pop()
 	cin >> i;
 	klis.pop(i);
 
+}
+
+void List::spawn(int num)
+{
+	this->klis.Spawn(num);
 }
 
 void List::push(int d)

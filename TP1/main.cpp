@@ -24,8 +24,13 @@ void menu()
 {
 	int choice = 0;
 	int k = 0;
+	cout << "Input the length of containers" << endl;
+	cin >>k;
+	cls();
+	Que a(k);
+	Que abc(a);
+	k = 0;
 	men();
-	Que abc;
 	abc.show();
 	while (choice != 6)
 	{
